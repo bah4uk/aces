@@ -11,7 +11,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525230410) do
+ActiveRecord::Schema.define(:version => 20130702215651) do
+
+  create_table "countries", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "pilots", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "country_id"
+    t.string   "name"
+    t.string   "status",     :default => "not_approved"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
+  create_table "planes", :force => true do |t|
+    t.integer  "pilot_id"
+    t.string   "model"
+    t.string   "frequency"
+    t.string   "type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
