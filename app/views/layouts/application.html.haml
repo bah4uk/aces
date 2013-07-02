@@ -1,13 +1,3 @@
-:css
-  .bottombar {
-    position: fixed;
-    bottom: 15px;
-    right: 15%;
-    left: 15%;
-  }
-  .centertext{
-    text-align:center;
-  }
 !!!
 %html
   %head
@@ -30,5 +20,4 @@
             .span12
               = render 'layouts/messages'
               = yield
-          %footer.bottombar.content.centertext
-            = "Тута будет какой-то баннер."
+          %footer
