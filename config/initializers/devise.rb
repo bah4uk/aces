@@ -139,5 +139,5 @@ Devise.setup do |config|
   config.sign_out_via = Rails.env.test? ? :get : :delete
 
   require "omniauth-facebook"
-  config.omniauth :facebook, "578329282188715", "cf60cf90e673ea01c3c1771d2c20717c"
+  config.omniauth :facebook, "160031560848346", "5c5395e1ecf9e17e04a131d208b69794"
 end
