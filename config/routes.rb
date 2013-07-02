@@ -5,7 +5,8 @@ Aces::Application.routes.draw do
 
   namespace :admin do
     resources :pilots
-    resources :planes
+
+    get "/" => "dashboard#index"
   end
 
   root :to => "home#index"

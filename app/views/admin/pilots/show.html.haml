@@ -1,0 +1,24 @@
+= link_to "Back", :back, :class => "btn"
+%br
+%br
+%table.table.table-bordered.table-condensed
+  %tr
+    %td{ :width => "100px" }
+      Name
+    %td
+      = @pilot.name
+  %tr
+    %td
+      Country
+    %td
+      = @pilot.country.name
+  %tr
+    %td
+      Status
+    %td
+      = @pilot.status
+  %tr
+    %td
+      Created At
+    %td
+      = @pilot.created_at

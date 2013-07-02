@@ -1,0 +1,10 @@
+%ul.nav.nav-list
+  %li.nav-header Menu
+  %li{ :class => params[:controller] == 'admin/dashboard' ? "active" : "" }
+    = link_to "Dashboard", admin_path
+  %li{ :class => params[:controller] == 'admin/pages' ? "active" : "" }
+    = link_to "Pilots", admin_pilots_path
+  %li{ :class => params[:controller] == 'admin/banks' ? "active" : "" }
+    = link_to "Tournaments", '#'
+  %li{ :class => params[:controller] == 'admin/banks' ? "active" : "" }
+    = link_to "Scores", '#'
