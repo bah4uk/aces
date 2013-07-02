@@ -13,7 +13,6 @@ gem "cancan", ">= 1.6.9"
 gem "rolify", ">= 3.2.0"
 gem "simple_form", ">= 2.1.0"
 gem "figaro", ">= 0.6.3"
-gem "binding_of_caller", ">= 0.7.1", :group => :development, :platforms => [:mri_19, :rbx]
 gem "libv8", ">= 3.11.8"
 gem "therubyracer", ">= 0.11.3", :group => :assets, :platform => :ruby, :require => "v8"
 gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
@@ -31,6 +30,7 @@ group :development do
   gem "html2haml", ">= 1.0.1"
   gem "quiet_assets", ">= 1.0.2"
   gem "better_errors", ">= 0.7.2"
+  gem "binding_of_caller"
 end
 
 group :test do
