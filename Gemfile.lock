@@ -139,10 +139,6 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    omniauth-vkontakte (1.2.0)
-      multi_json
-      omniauth (~> 1.1.0)
-      omniauth-oauth2 (~> 1.0)
     orm_adapter (0.4.0)
     pg (0.15.1)
     polyglot (0.3.3)
@@ -244,7 +240,6 @@ DEPENDENCIES
   libv8 (>= 3.11.8)
   omniauth
   omniauth-facebook
-  omniauth-vkontakte
   pg
   quiet_assets (>= 1.0.2)
   rails (= 3.2.13)

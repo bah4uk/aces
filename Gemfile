@@ -18,7 +18,6 @@ gem "therubyracer", ">= 0.11.3", :group => :assets, :platform => :ruby, :require
 gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'omniauth-vkontakte'
 
 group :development, :test do
   gem 'sqlite3'
