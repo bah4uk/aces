@@ -1,0 +1,23 @@
+%h2{:style => "text-align:center;"} Tournaments
+
+.container-fluid
+  .row-fluid
+    .span2
+      %table.table.table-bordered.table-condensed.table-hover
+        %tr
+          %th Name
+          %th Country
+        - @pilots.each do |pilot|
+          %tr
+            %td= link_to pilot.name, admin_pilot_path(pilot)
+            %td= pilot.country.name
+    .span10
+      - 3.times do
+        %table.table.table-bordered.table-condensed.table-hover
+          %tr
+            %th{:colspan => 2, :style => "text-align: center;" } Tour 1
+          %tr
+            %th Pilots
+          - @pilots.each do |pilot|
+            %tr
+              %td= "#{pilot.country.name[0..1]} - #{pilot.name}"

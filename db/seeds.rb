@@ -8,7 +8,8 @@
 # Environment variables (ENV['...']) are set in the file config/application.yml.
 # See http://railsapps.github.io/rails-environment-variables.html
 puts 'Seeding countries'
-countries = ["Albania","Armenia","Austria","Azerbaijan","Belarus","Belgium","Bosnia and Herzegovina","Bulgaria","Croatia","Cyprus","Czech Republic","Denmark","Estonia","Finland","France","Germany","Greece","Hungary","Italy","Latvia","Lithuania","Moldova","The Netherlands","Norway","Poland","Portugal","Romania","Russia","Serbia","Slovakia","Slovenia","Spain","Sweden","Switzerland","Turkey","Ukraine","United Kingdom"]
+countries = ["AL","AM","AT","AZ","BY","BE","BG","HR","CY","CZ","DK","EE","FI","FR","GE","GR","HU","IT","LV","LT","MD","NL","NO","PL","PT","RO","RU","RS","SK","SI","ES","SE","CH","TR","UA","UK"]
 countries.each do |name|
+  puts "Seeding #{name}"
   Country.create!({ name: name })
 end
