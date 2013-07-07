@@ -18,10 +18,4 @@
       .container
         = content_tag(:div, flash[:error],   :class => "alert alert-error")   if flash[:error]
         = content_tag(:div, flash[:success], :class => "alert alert-success") if flash[:success]
-        .container-fluid
-          .row-fluid
-            .span2
-              = render 'layouts/admin/sidebar'
-            .span10
-              = yield
-        %footer
+        = yield

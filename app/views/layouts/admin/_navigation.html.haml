@@ -1,4 +1,9 @@
-= link_to "Aces", root_path, :class => 'brand'
 %ul.nav.pull-right
-  %li
-    = link_to "Logout", destroy_user_session_path, :method => "delete"
+  %li{ :class => params[:controller] == 'admin/dashboard' ? "active" : "" }
+    = link_to "Dashboard", admin_path
+  %li{ :class => params[:controller] == 'admin/pilots' ? "active" : "" }
+    = link_to "Pilots", admin_pilots_path
+  %li{ :class => params[:controller] == 'admin/tournaments' ? "active" : "" }
+    = link_to "Tournaments", admin_tournaments_path
+  %li{ :class => params[:controller] == 'admin/banks' ? "active" : "" }
+    = link_to "Scores", '#'

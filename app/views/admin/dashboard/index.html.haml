@@ -1,3 +1,13 @@
-%h2 Dashboard
-%h4
-  = "Hello #{current_user.name}"
+%h2{:style => "text-align:center;"} Dashboard
+
+.container-fluid
+  .row-fluid
+    .span12
+      %table.table.table-bordered.table-condensed.table-hover
+        %tr
+          %th Tournament Name
+          %th Pilots registered
+        - @tournaments.each do |tournament|
+          %tr
+            %td= link_to tournament.name, admin_tournament_path(tournament)
+            %td= tournament.pilots.count
