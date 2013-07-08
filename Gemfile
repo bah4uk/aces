@@ -18,12 +18,12 @@ gem "therubyracer", ">= 0.11.3", :group => :assets, :platform => :ruby, :require
 gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem "faker"
 
 group :development, :test do
   gem 'sqlite3'
   gem "factory_girl_rails", ">= 4.2.0"
   gem "rspec-rails", ">= 2.12.2"
-  gem "faker"
 end
 
 group :development do
