@@ -6,8 +6,9 @@ class Admin::TournamentsController < Admin::BaseController
   end
 
   def show
-    @tournament = Tournament.find(params[:id])
-    @pilots = tournament.pilots.includes(:country)
+    @tournament = Tournament.includes(:pilots => :country).find(params[:id])
+    @pilots = @tournament.pilots
+    @tours = @tournament.tours.includes(:pilots => :country)
   end
 
   def new
