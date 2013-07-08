@@ -1,0 +1,17 @@
+%br
+%h2 Pilots
+
+%table.table.table-bordered.table-condensed.table-hover
+  %tr
+    %th Name
+    %th Country
+    %th{:width => "240px"} Actions
+
+  - @pilots.each do |pilot|
+    %tr
+      %td= pilot.name
+      %td= pilot.country.name
+      - unless @tournament.pilots.include?(pilot)
+        %td= button_to 'Pick pilot', add_pilot_path(:pilot_id => pilot.id, :tournament_id => @tournament.id), :class => "btn btn-small"
+      -else
+        %td= "Already picked"

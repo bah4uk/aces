@@ -1,5 +1,5 @@
 class Tour < ActiveRecord::Base
   belongs_to :tournament
-  has_many   :pilots
+  has_and_belongs_to_many :pilots, :join_table => :rounds
 
 end

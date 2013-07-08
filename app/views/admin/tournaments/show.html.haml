@@ -1,0 +1,39 @@
+%h2{:style => "text-align:center;"}
+  = @tournament.name
+
+.container-fluid
+  .row-fluid
+    .span5
+      %table.table.table-bordered.table-condensed.table-hover
+        %tr
+          %th Num
+          %th{:style => "text-align: center;"} Pilot Name
+          %th{:style => "text-align: center;"} Country
+          %th Remove
+        %th{:colspan => 4, :style => "text-align: center;" }
+          = link_to "Add pilot", pick_pilots_path(:tournament_id => @tournament), :class => "btn"
+        - @pilots.each_with_index do |pilot, index|
+          %tr
+            %td= "#{index + 1}"
+            %td= link_to pilot.name, admin_pilot_path(pilot)
+            %td{:style => "text-align: center;"}
+              = pilot.country.name
+            %td= button_to 'Remove pilot', remove_pilot_path(:pilot_id => pilot.id, :tournament_id => @tournament.id)
+
+    .span1
+      = button_to 'Shuffle', shuffle_path(:tournament_id => @tournament.id), {:disabled => (@tournament.pilots.count < 7) ? true : false}
+    .span6
+      - @tournament.tours.each_with_index do |tour, index|
+        %table.table.table-bordered.table-condensed.table-hover
+          %tr
+            %th{:colspan => 3, :style => "text-align: center;" }
+              = "Tour #{index + 1}"
+          %tr
+            %th{:style => "text-align: center;"} #
+            %th{:style => "text-align: center;"} Pilot name
+            %th{:style => "text-align: center;"} Pilot country
+          - tour.pilots.each_with_index do |pilot, index|
+            %tr
+              %td{:style => "text-align: center;"}= index + 1
+              %td{:style => "text-align: center;"}= pilot.name
+              %td{:style => "text-align: center;"}= pilot.country.name

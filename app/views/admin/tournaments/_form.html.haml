@@ -1,0 +1,11 @@
+= form_for(@tournament, :url => url, :html => { :method => method, :class=> "form"}) do |f|
+  - if @tournament.errors.any?
+    .alert.alert-error
+      - @tournament.errors.full_messages.each do |msg|
+        = msg
+        %br
+  %div
+    = f.label :name
+    = f.text_field :name, :class => "span6"
+    %br
+    = f.submit submit, :class => "btn"

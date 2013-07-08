@@ -1,0 +1,5 @@
+= link_to "Back", :back, :class => "btn"
+%br
+%h1 New Tournament
+
+= render "admin/tournaments/form", :url => "/admin/tournaments", :submit => "Create", :method => :post
