@@ -40,7 +40,6 @@ class Tool::Shuffle
         end
 
         pilots = tournament.pilots.shuffle.map{|plt| [plt.id, plt.tours.count]}.sort_by{|item| item[1]}.reverse
-        pp pilots
         count_var.times do
           begin
             pilot = Pilot.find(pilots.pop[0]) rescue nil
@@ -49,7 +48,6 @@ class Tool::Shuffle
           tour.pilots.push(pilot) unless pilot.nil?
         end
       end
-      pp tournament.pilots.select{|plt| plt.tours.count < 5}.map(&:name)
     end
 
     def create_rounds(tournament)
