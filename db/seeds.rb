@@ -15,7 +15,7 @@ puts 'ROLES'
 end
 
 puts 'Seeding user'
-user = User.find_or_create_by_email :name => "Ivan", :email => "aces@gexample.com", :password => "aces", :password_confirmation => "aces"
+user = User.find_or_create_by_email :name => "Ivan", :email => "aces@example.com", :password => "aces", :password_confirmation => "aces"
 puts 'DEFAULT USERS'
 puts 'user: ' << user.name
 user.add_role :admin
