@@ -57,14 +57,5 @@ class Tool::Shuffle
         tournament.tours.create
       end
     end
-
-    def seed_plts
-      return false if Pilot.count > 5
-      ids = Country.all.map(&:id)
-      ids.each do |country_id|
-        name = Faker::Name.name
-        Pilot.create!({ name: name, country_id: ids.sample })
-      end
-    end
   end
 end
