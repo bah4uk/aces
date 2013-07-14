@@ -13,6 +13,7 @@ class Admin::TournamentsController < Admin::BaseController
     respond_to do |format|
       format.html
       format.xls
+      format.xml  { render :xml => @tours }
     end
   end
 
