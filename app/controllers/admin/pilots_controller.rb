@@ -9,10 +9,18 @@ class Admin::PilotsController < Admin::BaseController
 
   def new
     @pilot = Pilot.new
+    @tournaments = Tournament.all
   end
 
   def create
+    pp "HUUUUUUUUUUUUUU"
+    pp params[:tournament]
+
     @pilot = Pilot.create(params[:pilot])
+
+    params[:tournament].each do |tournament|
+      Tournament.find(tournament.to_i).pilots.push(@pilot)
+    end
     if @pilot.errors.any?
       render :action => :new
     else

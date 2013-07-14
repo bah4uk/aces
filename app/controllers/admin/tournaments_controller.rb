@@ -70,7 +70,6 @@ class Admin::TournamentsController < Admin::BaseController
   end
 
   def pick_for_tour
-    pp params
     @tournament = Tournament.find(params[:tournament_id])
     @tour       = Tour.find(params[:tour_id])
     @pilots     = tournament.pilots.select{|pilot| pilot.tours_in(@tournament) < tournament.rounds_per_pilot}
