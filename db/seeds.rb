@@ -29,7 +29,7 @@ end
 puts "done"
 
 puts 'Seeding categories'
-categories = ["WW I", "WW II"]
+categories = ["WWI", "WWII", "S500"]
 categories.each do |name|
   puts "Seeding #{name}"
   Category.create!({ name: name })
