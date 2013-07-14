@@ -13,11 +13,7 @@ class Admin::PilotsController < Admin::BaseController
   end
 
   def create
-    pp "HUUUUUUUUUUUUUU"
-    pp params[:tournament]
-
     @pilot = Pilot.create(params[:pilot])
-
     params[:tournament].each do |tournament|
       Tournament.find(tournament.to_i).pilots.push(@pilot)
     end
