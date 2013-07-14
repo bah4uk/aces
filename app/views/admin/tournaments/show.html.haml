@@ -25,6 +25,7 @@
     .span1
       = button_to 'Shuffle', shuffle_path(:tournament_id => @tournament.id), {:disabled => (@tournament.pilots.count < 6) ? true : false}
     .span6
+      = link_to "Excel", admin_tournament_path(format: "xls")
       - @tours.each_with_index do |tour, index|
         %table.table.table-bordered.table-condensed.table-hover
           %tr

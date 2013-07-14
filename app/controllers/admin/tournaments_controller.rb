@@ -9,6 +9,11 @@ class Admin::TournamentsController < Admin::BaseController
     @tournament = Tournament.includes(:pilots => :country).find(params[:id])
     @pilots = @tournament.pilots
     @tours = @tournament.tours.includes(:pilots => :country)
+
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
 
   def new
