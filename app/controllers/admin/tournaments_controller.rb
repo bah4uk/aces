@@ -30,6 +30,12 @@ class Admin::TournamentsController < Admin::BaseController
     end
   end
 
+  def shuffle
+    tournament = Tournament.find(params[:tournament_id])
+    Tool::Shuffle.new(tournament).shuffle
+    redirect_to :action => :show
+  end
+
   def pick_pilots
     @tournament = Tournament.find(params[:tournament_id])
     @pilots = Pilot.all
@@ -42,17 +48,33 @@ class Admin::TournamentsController < Admin::BaseController
     redirect_to :action => :show
   end
 
-  def shuffle
-    tournament = Tournament.find(params[:tournament_id])
-    Tool::Shuffle.new(tournament).shuffle
-    redirect_to :action => :show
-  end
-
   def remove_pilot
     pilot = Pilot.find(params[:pilot_id])
     tournament = Tournament.find(params[:tournament_id])
     tournament.pilots.delete(pilot)
     redirect_to :action => :show
+  end
+
+  def remove_from_tour
+    pilot = Pilot.find(params[:pilot_id])
+    tour  = Tour.find(params[:tour_id])
+    tour.pilots.delete(pilot)
+    redirect_to :action => :show
+  end
+
+  def add_to_tour
+    pilot = Pilot.find(params[:pilot_id])
+    tour  = Tour.find(params[:tour_id])
+    tour.pilots.push(pilot)
+    redirect_to :action => :show
+  end
+
+  def pick_for_tour
+    pp params
+    @tournament = Tournament.find(params[:tournament_id])
+    @tour       = Tour.find(params[:tour_id])
+    @pilots     = tournament.pilots.select{|pilot| pilot.tours_in(@tournament) < tournament.rounds_per_pilot}
+                                   .reject{|pilot| @tour.pilots.include?(pilot)}
   end
 
   def edit

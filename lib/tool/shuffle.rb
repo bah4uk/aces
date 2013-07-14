@@ -1,27 +1,14 @@
 class Tool::Shuffle
 
-  attr_accessor :tournament, :category, :num_of_pilots, :number_of_rounds
+  attr_accessor :tournament, :category, :num_of_pilots, :number_of_rounds,
+                :pilots_per_round, :rounds_per_pilot
 
   def initialize(tournament)
     @tournament, @category = tournament, tournament.category.name
     @num_of_pilots    = tournament.pilots.count
+    @pilots_per_round = tournament.pilots_per_round
+    @rounds_per_pilot = tournament.rounds_per_pilot
     @number_of_rounds = num_of_pilots / pilots_per_round * rounds_per_pilot + extra_rounds[0]
-  end
-
-  def pilots_per_round
-    case category
-      when "WWI"  then return 6
-      when "WWII" then return 7
-      when "S500" then return 7
-    end
-  end
-
-  def rounds_per_pilot
-    case category
-      when "WWI"  then return 3
-      when "WWII" then return 5
-      when "S500" then return 3
-    end
   end
 
   def extra_rounds
