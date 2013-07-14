@@ -1,8 +1,8 @@
-class Tool::Shuffle
+class Tool::Shuffle2
 
-  # WWII
-  PILOTS_PER_ROUND = 7
-  ROUNDS_PER_PILOT = 5
+  # WW I
+  PILOTS_PER_ROUND = 6
+  ROUNDS_PER_PILOT = 3
 
   class << self
     def number_of_rounds(num_of_pilots)
@@ -12,19 +12,19 @@ class Tool::Shuffle
     def extra_rounds(num_of_pilots)
       case num_of_pilots%PILOTS_PER_ROUND
         when 1
-          [1, [7,7,7,6,6]]
+          [1, [5,5,5]]
         when 2
-          [2, [7,6,6,6,6]]
+          [1, [6,6,6]]
         when 3
-          [3, [6,6,6,6,5]]
+          [2, [5,5,5]]
         when 4
-          [3, [7,7,7,7,6]]
+          [2, [6,6,6]]
         when 5
-          [4, [7,7,6,6,6]]
+          [3, [5,5,5]]
         when 6
-          [5, [6,6,6,6,6]]
+          [3, [6,6,6]]
         else
-          [0, [7,7,7,7,7]]
+          [0, [6,6,6]]
         end
     end
 

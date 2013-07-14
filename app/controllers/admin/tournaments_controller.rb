@@ -39,7 +39,14 @@ class Admin::TournamentsController < Admin::BaseController
 
   def shuffle
     tournament = Tournament.find(params[:tournament_id])
-    Tool::Shuffle.shuffle(tournament)
+    case tournament.category.name
+      when "WWI"
+        Tool::Shuffle2.shuffle(tournament)
+      when "WWII"
+        Tool::Shuffle.shuffle(tournament)
+      else
+        nil
+      end
     redirect_to :action => :show
   end
 
