@@ -10,5 +10,9 @@ class Pilot < ActiveRecord::Base
     const_set(name.upcase, name)
   end
 
+  def tours_in(tournament)
+    tours.where(:tournament_id => tournament.id).count
+  end
+
   attr_accessible :user_id, :country_id, :name, :status
 end
