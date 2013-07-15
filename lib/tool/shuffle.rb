@@ -14,25 +14,24 @@ class Tool::Shuffle
   def extra_rounds
     if category == "WWI"
       case num_of_pilots%pilots_per_round
-        when 0 then return [0, [6,6,6]]
-        when 1 then return [1, [5,5,5]]
-        when 2 then return [1, [6,6,6]]
-        when 3 then return [2, [5,5,5]]
-        when 4 then return [2, [6,6,6]]
-        when 5 then return [3, [5,5,5]]
-        when 6 then return [3, [6,6,6]]
+        when 0 then return [0, 0]
+        when 1 then return [1, 3]
+        when 2 then return [1, 0]
+        when 3 then return [2, 3]
+        when 4 then return [2, 0]
+        when 5 then return [3, 3]
       end
     end
 
     if category == "WWII"
       case num_of_pilots%pilots_per_round
-        when 0 then return [0, [7,7,7,7,7]]
-        when 1 then return [1, [7,7,7,6,6]]
-        when 2 then return [2, [7,6,6,6,6]]
-        when 3 then return [3, [6,6,6,6,5]]
-        when 4 then return [3, [7,7,7,7,6]]
-        when 5 then return [4, [7,7,6,6,6]]
-        when 6 then return [5, [6,6,6,6,6]]
+        when 0 then return [0, 0]
+        when 1 then return [1, 2]
+        when 2 then return [2, 4]
+        when 3 then return [3, 6]
+        when 4 then return [3, 1]
+        when 5 then return [4, 3]
+        when 6 then return [5, 5]
       end
     end
 
@@ -55,16 +54,8 @@ class Tool::Shuffle
     tournament.tours.each_with_index do |tour, index|
       count_var = pilots_per_round
 
-      if category != "S500"
-        if index >= number_of_rounds - rounds_per_pilot
-          count_var = extra_rounds[1][index - (number_of_rounds - rounds_per_pilot)]
-        end
-      end
-
-      if category == "S500"
-        if index >= number_of_rounds - extra_rounds[1]
-          count_var = 6
-        end
+      if index >= number_of_rounds - extra_rounds[1]
+        count_var = category == "WWI" ? 5 : 6
       end
 
       pilots = tournament.pilots.shuffle.map{|plt| [plt.id, plt.tours_in(tournament)]}.sort_by{|item| item[1]}.reverse
