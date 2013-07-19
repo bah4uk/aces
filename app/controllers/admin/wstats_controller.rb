@@ -15,7 +15,6 @@ class Admin::WstatsController < Admin::BaseController
   end
 
   def create
-    pp params
     @wstat = Wstat.create(params[:wstat])
     tournament = params[:wstat][:tournament_id]
     if @wstat.errors.any?
@@ -33,7 +32,6 @@ class Admin::WstatsController < Admin::BaseController
   end
 
   def update
-    pp params
     tournament = params[:wstat][:tournament_id]
     @wstat.update_attributes(params[:wstat])
     if @wstat.errors.any?
