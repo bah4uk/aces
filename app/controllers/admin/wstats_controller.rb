@@ -45,7 +45,7 @@ class Admin::WstatsController < Admin::BaseController
   def destroy
     @wstat.destroy
     flash[:success] = "Wstat #{@wstat.id} was deleted"
-    redirect_to :action => :index
+    redirect_to :back
   end
 
 private
