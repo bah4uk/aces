@@ -6,6 +6,7 @@ Aces::Application.routes.draw do
   namespace :admin do
     resources :pilots
     resources :tournaments
+    resources :wstats
 
     get "/dashboard" => "dashboard#index"
     get "/" => "tournaments#index"

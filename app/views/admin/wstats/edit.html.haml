@@ -1,0 +1,4 @@
+= link_to "Back", :back, :class => "btn"
+%h2 Edit stats
+
+= render "admin/wstats/form", :url => "/admin/wstats/#{@wstat.id}", :submit => "Update", :method => :put

@@ -1,0 +1,63 @@
+= form_for(@wstat, :url => url, :html => { :method => method, :class=> "form"}) do |f|
+  .container-fluid
+    .row-fluid
+      .span6
+        %h3 Main points
+        %br
+        = f.hidden_field :pilot_id, :value => @pilot.id
+        = f.hidden_field :tour_id,  :value => @tour.id
+        = f.hidden_field :tournament_id,  :value => @tournament.id
+        = f.label "Seconds in air"
+        = f.number_field :seconds
+        %br
+        = f.label "Streamers cut"
+        = f.number_field :cuts
+        %br
+        = f.check_box :uncut
+        = f.label :uncut, "Own streamer uncut", :style => "display:inline"
+        %br
+        = f.check_box :non_engagement
+        = f.label :non_engagement, "Non-engagement", :style => "display:inline"
+        %br
+        = f.check_box :crossed_line
+        = f.label :crossed_line, "Crossed safety line", :style => "display:inline"
+        %br
+        = f.check_box :ground_start
+        = f.label :ground_start, "Start from the ground", :style => "display:inline"
+        %br
+        = f.check_box :landed
+        = f.label :landed, "Landing in Landing field after end signal", :style => "display:inline"
+        %br
+        = f.label "Ground targets"
+        = f.number_field :ground_targets
+      .span6
+        %h3 Optional points
+        %br
+        = f.check_box :cable_wires
+        = f.label :cable_wires, "Cable wires", :style => "display:inline"
+        %br
+        = f.check_box :guns
+        = f.label :guns, "Guns", :style => "display:inline"
+        %br
+        = f.check_box :pilot_on_board
+        = f.label :pilot_on_board, "Pilot on board", :style => "display:inline"
+        %br
+        = f.check_box :wing_structure
+        = f.label :wing_structure, "Wing structure", :style => "display:inline"
+        %br
+        = f.check_box :biplane
+        = f.label :biplane, "Biplane", :style => "display:inline"
+        %br
+        = f.check_box :four_stroke_engine
+        = f.label :four_stroke_engine, "Four stroke engine", :style => "display:inline"
+        %br
+        = f.label "RPM"
+        = f.number_field :rpm
+        %br
+        = f.label "PROP DxP"
+        = f.text_field :prop_ratio
+        %br
+        = f.label "Judge"
+        = f.select :judge_id, @tournament.pilots.map{ |pilot| [pilot.name, pilot.id] }
+      %br
+      = f.submit submit, :class => "btn"

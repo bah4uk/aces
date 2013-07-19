@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130708212608) do
+ActiveRecord::Schema.define(:version => 20130718222324) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -104,5 +104,28 @@ ActiveRecord::Schema.define(:version => 20130708212608) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "wstats", :force => true do |t|
+    t.integer "pilot_id"
+    t.integer "tour_id"
+    t.integer "tournament_id"
+    t.integer "seconds",            :default => 0
+    t.integer "cuts",               :default => 0
+    t.boolean "uncut"
+    t.boolean "non_engagement"
+    t.boolean "crossed_line"
+    t.boolean "ground_start"
+    t.boolean "landed"
+    t.integer "ground_targets",     :default => 0
+    t.boolean "cable_wires"
+    t.boolean "guns"
+    t.boolean "pilot_on_board"
+    t.boolean "wing_structure"
+    t.boolean "biplane"
+    t.boolean "four_stroke_engine"
+    t.integer "rpm"
+    t.string  "prop_ratio"
+    t.integer "judge_id"
+  end
 
 end
