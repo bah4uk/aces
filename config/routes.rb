@@ -1,7 +1,5 @@
 Aces::Application.routes.draw do
-  authenticated :user do
-    root :to => 'home#index'
-  end
+  root :to => 'tournaments#index'
 
   namespace :admin do
     resources :pilots
