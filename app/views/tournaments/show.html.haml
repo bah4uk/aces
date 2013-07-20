@@ -1,0 +1,37 @@
+%h2{:style => "text-align:center;"}
+  = @tournament.name
+%h5{:style => "text-align:center;"}
+  = "Класс: #{@tournament.category.name}"
+
+.container-fluid
+  .row-fluid
+    .span12
+      - @tournament.tours.each_with_index do |tour, tindex|
+        %table.table.table-bordered.table-condensed.table-hover
+          %tr
+            %th{:colspan => 3, :style => "text-align: center;" }
+              = "Тур #{tindex + 1}"
+          %tr
+            %th{:style => "text-align: center;"} Тур
+            %th{:style => "text-align: center;"} Имя пилота
+            %th{:style => "text-align: center;"} Набрано очков
+          - tour.pilots.each_with_index do |pilot, index|
+            %tr
+              %td{:style => "text-align: center;"}= index + 1
+              %td{:style => "text-align: center;"}= pilot.name
+              - if @tournament.category.name == "WWI"
+                - a = Wstat.pilot_tour(pilot.id, tour.id)
+                - if a.nil?
+                  %td{:style => "text-align: center;"}
+                    = 0
+                - else
+                  %td{:style => "text-align: center;"}
+                    = Wstat.pts_for(pilot.id)
+              - else
+                - a = Wwstat.pilot_tour(pilot.id, tour.id)
+                - if a.nil?
+                  %td{:style => "text-align: center;"}
+                    = 0
+                - else
+                  %td{:style => "text-align: center;"}
+                    = Wwstat.pts_for(pilot.id)
