@@ -1,4 +1,4 @@
 = link_to "Back", :back, :class => "btn"
-%h2 Edit #{@pilot.name}
+%h2 Подправить #{@pilot.name}
 
 = render "admin/pilots/form", :url => "/admin/pilots/#{@pilot.id}", :submit => "Update", :method => :put

@@ -1,16 +1,16 @@
 %br
-%h2 Pilots
+%h2 Пилоты
 
 %table.table.table-bordered.table-condensed.table-hover
   %tr
-    %th Name
-    %th Country
-    %th Tours
-    %th{:width => "240px"} Actions
+    %th Имя
+    %th Страна
+    %th Участвует в № турах
+    %th{:width => "240px"} Действия
 
   - @pilots.each do |pilot|
     %tr
       %td= pilot.name
       %td= pilot.country.name
       %td= pilot.tours_in(@tournament)
-      %td= button_to 'Pick pilot', add_to_tour_path(:pilot_id => pilot.id, :tour_id => @tour.id), :class => "btn btn-small"
+      %td= button_to 'Выбрать пилота', add_to_tour_path(:pilot_id => pilot.id, :tour_id => @tour.id), :class => "btn btn-small"

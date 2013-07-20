@@ -5,10 +5,10 @@
         = msg
         %br
   %div
-    = f.label :name
+    = f.label "Название"
     = f.text_field :name, :class => "span6"
     %br
-    = f.label :category_id
+    = f.label "Класс"
     = f.select :category_id, Category.all.map{ |c| [c.name, c.id] }
     %br
     = f.submit submit, :class => "btn"

@@ -1,13 +1,13 @@
-%h2{:style => "text-align:center;"} Tournaments
+%h2{:style => "text-align:center;"} Соревнования
 .container-fluid
   .row-fluid
     .span6
       %table.table.table-bordered.table-condensed.table-hover
         %tr
-          %th{:style => "text-align: center;"} Tournament
-          %th{:style => "text-align: center;"} Pilots count
-          %th{:style => "text-align: center;"} Category
-          %th{:style => "text-align: center; width: 240px"} Actions
+          %th{:style => "text-align: center;"} Соревнование
+          %th{:style => "text-align: center;"} Зарегистрировано пилотов
+          %th{:style => "text-align: center;"} Класс
+          %th{:style => "text-align: center; width: 240px"} Действия
         - @tournaments.each do |tournament|
           %tr
             %td{:style => "text-align: center;"}= link_to tournament.name, admin_tournament_path(tournament)

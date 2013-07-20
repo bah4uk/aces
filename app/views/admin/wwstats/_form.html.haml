@@ -1,0 +1,33 @@
+%h3{:style => "text-align: center;"}
+  = @pilot.name
+%h3{:style => "text-align: center;"}
+  = "#{@tournament.name}, #{@tindex}-й тур"
+= form_for(@wwstat, :url => url, :html => { :method => method, :class=> "form"}) do |f|
+  .container-fluid
+    .row-fluid
+      .span6
+        %h4 Очки
+        = f.hidden_field :pilot_id,      :value => @pilot.id
+        = f.hidden_field :tour_id,       :value => @tour.id
+        = f.hidden_field :tournament_id, :value => @tournament.id
+        %br
+        = f.label "Время полета (сек)"
+        = f.number_field :seconds
+        %br
+        = f.label "Отрубы"
+        = f.number_field :cuts
+        %br
+        = f.check_box :uncut
+        = f.label     :uncut, "Сохранение ленты", :style => "display:inline"
+        %br
+        = f.check_box :non_engagement
+        = f.label     :non_engagement, "Уклонение от боя", :style => "display:inline"
+        %br
+        = f.check_box :crossed_line
+        = f.label     :crossed_line, "Пересечение линии безопасности", :style => "display:inline"
+        %br
+        = f.check_box :rpm_penalty
+        = f.label     :rpm_penalty, "Превышение оборотов", :style => "display:inline"
+      %br
+    = f.submit submit, :class => "btn"
+    = link_to "Назад", :back, :class => "btn"

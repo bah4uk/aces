@@ -1,7 +1,7 @@
 %h2{:style => "text-align:center;"}
   = @tournament.name
 %h5{:style => "text-align:center;"}
-  = @tournament.category.name
+  = "Класс: #{@tournament.category.name}"
 
 .container-fluid
   .row-fluid
@@ -9,11 +9,11 @@
       %table.table.table-bordered.table-condensed.table-hover
         %tr
           %th Num
-          %th{:style => "text-align: center;"} Pilot Name
-          %th{:style => "text-align: center;"} Country
-          %th Remove
+          %th{:style => "text-align: center;"} Имя пилота
+          %th{:style => "text-align: center;"} Страна
+          %th Удалить
         %th{:colspan => 4, :style => "text-align: center;" }
-          = link_to "Add pilot", pick_pilots_path(:tournament_id => @tournament), :class => "btn"
+          = link_to "Добавить пилота", pick_pilots_path(:tournament_id => @tournament), :class => "btn"
         - @pilots.each_with_index do |pilot, index|
           %tr
             %td= "#{index + 1}"
@@ -26,19 +26,19 @@
       = button_to 'Shuffle', shuffle_path(:tournament_id => @tournament.id), {:disabled => (@tournament.pilots.count < 6) ? true : false, :class => "btn"}
       = link_to "Excel", admin_tournament_path(format: "xls"), :class => "btn"
     .span7
-      - @tours.each_with_index do |tour, index|
+      - @tours.each_with_index do |tour, tindex|
         %table.table.table-bordered.table-condensed.table-hover
           %tr
             %th{:colspan => 6, :style => "text-align: center;" }
-              = "Tour #{index + 1}"
+              = "Tour #{tindex + 1}"
           %tr
             %th{:style => "text-align: center;"} #
-            %th{:style => "text-align: center;"} Delete
-            %th{:style => "text-align: center;"} Pilot name
-            %th{:style => "text-align: center;"} Pilot country
+            %th{:style => "text-align: center;"} Убрать
+            %th{:style => "text-align: center;"} Имя пилоты
+            %th{:style => "text-align: center;"} Страна
             - if @tournament.category.name == "WWI"
-              %th{:style => "text-align: center;"} Stats
-              %th{:style => "text-align: center;"} Points
+              %th{:style => "text-align: center;"} Счет
+              %th{:style => "text-align: center;"} Набрано очков
           - tour.pilots.each_with_index do |pilot, index|
             %tr
               %td{:style => "text-align: center;"}= index + 1
@@ -51,15 +51,27 @@
                 - a = Wstat.pilot_tour(pilot.id, tour.id)
                 - if a.nil?
                   %td{:style => "text-align: center;"}
-                    = link_to 'New', new_admin_wstat_path(:tournament_id => @tournament.id, :pilot_id => pilot.id, :tour_id => tour.id)
+                    = link_to 'Заполнить пилотный лист', new_admin_wstat_path(:tournament_id => @tournament.id, :pilot_id => pilot.id, :tour_id => tour.id, :tindex => tindex)
                   %td{:style => "text-align: center;"}
-                    = "No data"
+                    = "Нет данных"
                 - else
                   %td{:style => "text-align: center;"}
-                    =link_to "Clear", admin_wstat_path(a), :method => "delete", :data => { :confirm => "Are you sure?"}
+                    =link_to "Обнулить", admin_wstat_path(a), :method => "delete", :data => { :confirm => "Are you sure?"}
                   %td{:style => "text-align: center;"}
-                    = link_to Wstat.points_for(pilot.id, tour.id), edit_admin_wstat_path(:id => a.id, :tournament_id => @tournament.id, :pilot_id => pilot.id, :tour_id => tour.id)
+                    = link_to Wstat.points_for(pilot.id, tour.id), edit_admin_wstat_path(:id => a.id, :tournament_id => @tournament.id, :pilot_id => pilot.id, :tour_id => tour.id, :tindex => tindex)
+              - else
+                - a = Wwstat.pilot_tour(pilot.id, tour.id)
+                - if a.nil?
+                  %td{:style => "text-align: center;"}
+                    = link_to 'Заполнить пилотный лист', new_admin_wwstat_path(:tournament_id => @tournament.id, :pilot_id => pilot.id, :tour_id => tour.id, :tindex => tindex)
+                  %td{:style => "text-align: center;"}
+                    = "Нет данных"
+                - else
+                  %td{:style => "text-align: center;"}
+                    =link_to "Обнулить", admin_wwstat_path(a), :method => "delete", :data => { :confirm => "Are you sure?"}
+                  %td{:style => "text-align: center;"}
+                    = link_to Wwstat.points_for(pilot.id, tour.id), edit_admin_wwstat_path(:id => a.id, :tournament_id => @tournament.id, :pilot_id => pilot.id, :tour_id => tour.id, :tindex => tindex)
           - if tour.pilots.count < @tournament.pilots_per_round
             %tr
               %th{:colspan => 6, :style => "text-align: center;" }
-                = link_to "Pick pilot", pick_for_tour_path(:tournament_id => @tournament.id, :tour_id => tour.id), :class => "btn"
+                = link_to "Добрать пилота", pick_for_tour_path(:tournament_id => @tournament.id, :tour_id => tour.id), :class => "btn"

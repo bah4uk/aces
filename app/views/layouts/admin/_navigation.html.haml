@@ -1,7 +1,7 @@
 %ul.nav.pull-left
   %li{ :class => params[:controller] == 'admin/pilots' ? "active" : "" }
-    = link_to "Pilots", admin_pilots_path
+    = link_to "Пилоты", admin_pilots_path
   %li{ :class => params[:controller] == 'admin/tournaments' ? "active" : "" }
-    = link_to "Tournaments", admin_tournaments_path
+    = link_to "Соревнования", admin_tournaments_path
   %li
-    = link_to 'Logout', destroy_user_session_path, :method=>'delete'
+    = link_to 'Выйти', destroy_user_session_path, :method=>'delete'

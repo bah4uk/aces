@@ -7,6 +7,7 @@ Aces::Application.routes.draw do
     resources :pilots
     resources :tournaments
     resources :wstats
+    resources :wwstats
 
     get "/dashboard" => "dashboard#index"
     get "/" => "tournaments#index"

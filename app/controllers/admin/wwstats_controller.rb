@@ -1,7 +1,7 @@
-class Admin::WstatsController < Admin::BaseController
-  before_filter :wstat, :only => [:edit, :show, :update, :destroy]
+class Admin::WwstatsController < Admin::BaseController
+  before_filter :wwstat, :only => [:edit, :show, :update, :destroy]
   def index
-    @wstats = Wstat.all
+    @wstats = Wwstat.all
   end
 
   def show
@@ -9,19 +9,19 @@ class Admin::WstatsController < Admin::BaseController
 
   def new
     @tindex     = params[:tindex].to_i + 1
-    @wstat      = Wstat.new
+    @wwstat     = Wwstat.new
     @pilot      = Pilot.find(params[:pilot_id])
     @tour       = Tour.find(params[:tour_id])
     @tournament = Tournament.find(params[:tournament_id])
   end
 
   def create
-    @wstat = Wstat.create(params[:wstat])
-    tournament = params[:wstat][:tournament_id]
-    if @wstat.errors.any?
+    @wwstat = Wwstat.create(params[:wwstat])
+    tournament = params[:wwstat][:tournament_id]
+    if @wwstat.errors.any?
       render :action => :new
     else
-      flash[:success] = "Wstat #{@wstat.id} was created"
+      flash[:success] = "Wwstat #{@wwstat.id} was created"
       redirect_to admin_tournament_path(tournament)
     end
   end
@@ -34,24 +34,24 @@ class Admin::WstatsController < Admin::BaseController
   end
 
   def update
-    tournament = params[:wstat][:tournament_id]
-    @wstat.update_attributes(params[:wstat])
-    if @wstat.errors.any?
-      render :action => :edit, :wstat => @wstat
+    tournament = params[:wwstat][:tournament_id]
+    @wwstat.update_attributes(params[:wwstat])
+    if @wwstat.errors.any?
+      render :action => :edit, :wwstat => @wwstat
     else
-      flash[:success] = "Wstat #{@wstat.id} was updated"
+      flash[:success] = "Wwstat #{@wwstat.id} was updated"
       redirect_to admin_tournament_path(tournament)
     end
   end
 
   def destroy
-    @wstat.destroy
-    flash[:success] = "Wstat #{@wstat.id} was deleted"
+    @wwstat.destroy
+    flash[:success] = "Wwstat #{@wwstat.id} was deleted"
     redirect_to :back
   end
 
 private
-  def wstat
-    @wstat = Wstat.find(params[:id])
+  def wwstat
+    @wwstat = Wwstat.find(params[:id])
   end
 end

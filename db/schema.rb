@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130718222324) do
+ActiveRecord::Schema.define(:version => 20130720041858) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -126,6 +126,18 @@ ActiveRecord::Schema.define(:version => 20130718222324) do
     t.integer "rpm"
     t.string  "prop_ratio"
     t.integer "judge_id"
+  end
+
+  create_table "wwstats", :force => true do |t|
+    t.integer "pilot_id"
+    t.integer "tour_id"
+    t.integer "tournament_id"
+    t.integer "seconds",        :default => 0
+    t.integer "cuts",           :default => 0
+    t.boolean "uncut"
+    t.boolean "non_engagement"
+    t.boolean "crossed_line"
+    t.boolean "rpm_penalty"
   end
 
 end

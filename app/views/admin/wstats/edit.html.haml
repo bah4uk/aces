@@ -1,4 +1,3 @@
-= link_to "Back", :back, :class => "btn"
-%h2 Edit stats
+%h1{:style => "text-align: center;"} Пилотный лист
 
-= render "admin/wstats/form", :url => "/admin/wstats/#{@wstat.id}", :submit => "Update", :method => :put
+= render "admin/wstats/form", :url => "/admin/wstats/#{@wstat.id}", :submit => "Сохранить", :method => :put

@@ -1,63 +1,59 @@
+%h3{:style => "text-align: center;"}
+  = @pilot.name
+%h3{:style => "text-align: center;"}
+  = "#{@tournament.name}, #{@tindex}-й тур"
 = form_for(@wstat, :url => url, :html => { :method => method, :class=> "form"}) do |f|
   .container-fluid
     .row-fluid
       .span6
-        %h3 Main points
+        %h4 Очки
+        = f.hidden_field :pilot_id,      :value => @pilot.id
+        = f.hidden_field :tour_id,       :value => @tour.id
+        = f.hidden_field :tournament_id, :value => @tournament.id
         %br
-        = f.hidden_field :pilot_id, :value => @pilot.id
-        = f.hidden_field :tour_id,  :value => @tour.id
-        = f.hidden_field :tournament_id,  :value => @tournament.id
-        = f.label "Seconds in air"
+        = f.label "Время полета (сек)"
         = f.number_field :seconds
         %br
-        = f.label "Streamers cut"
+        = f.label "Отрубы"
         = f.number_field :cuts
         %br
         = f.check_box :uncut
-        = f.label :uncut, "Own streamer uncut", :style => "display:inline"
+        = f.label     :uncut, "Сохранение ленты", :style => "display:inline"
         %br
         = f.check_box :non_engagement
-        = f.label :non_engagement, "Non-engagement", :style => "display:inline"
+        = f.label     :non_engagement, "Уклонение от боя", :style => "display:inline"
         %br
         = f.check_box :crossed_line
-        = f.label :crossed_line, "Crossed safety line", :style => "display:inline"
+        = f.label     :crossed_line, "Пересечение линии безопасности", :style => "display:inline"
         %br
         = f.check_box :ground_start
-        = f.label :ground_start, "Start from the ground", :style => "display:inline"
+        = f.label     :ground_start, "Взлет с колес", :style => "display:inline"
         %br
         = f.check_box :landed
-        = f.label :landed, "Landing in Landing field after end signal", :style => "display:inline"
+        = f.label     :landed, "Посадка в зоне посадки", :style => "display:inline"
         %br
-        = f.label "Ground targets"
+        = f.label "Наземные цели"
         = f.number_field :ground_targets
       .span6
-        %h3 Optional points
+        %h4 Стендовая оценка
         %br
         = f.check_box :cable_wires
-        = f.label :cable_wires, "Cable wires", :style => "display:inline"
+        = f.label     :cable_wires, "Расчалки", :style => "display:inline"
         %br
         = f.check_box :guns
-        = f.label :guns, "Guns", :style => "display:inline"
+        = f.label     :guns, "Наличие пулеметов", :style => "display:inline"
         %br
         = f.check_box :pilot_on_board
-        = f.label :pilot_on_board, "Pilot on board", :style => "display:inline"
+        = f.label     :pilot_on_board, "Пилот", :style => "display:inline"
         %br
         = f.check_box :wing_structure
-        = f.label :wing_structure, "Wing structure", :style => "display:inline"
+        = f.label     :wing_structure, "Структура крыла как у прототипа", :style => "display:inline"
         %br
         = f.check_box :biplane
-        = f.label :biplane, "Biplane", :style => "display:inline"
+        = f.label     :biplane, "Биплан", :style => "display:inline"
         %br
         = f.check_box :four_stroke_engine
-        = f.label :four_stroke_engine, "Four stroke engine", :style => "display:inline"
-        %br
-        = f.label "RPM"
-        = f.number_field :rpm
-        %br
-        = f.label "PROP DxP"
-        = f.text_field :prop_ratio
-        %br
-        = f.label "Judge"
-        = f.select :judge_id, @tournament.pilots.map{ |pilot| [pilot.name, pilot.id] }
+        = f.label     :four_stroke_engine, "4-х тактный", :style => "display:inline"
       %br
-      = f.submit submit, :class => "btn"
+    = f.submit submit, :class => "btn"
+    = link_to "Назад", :back, :class => "btn"
