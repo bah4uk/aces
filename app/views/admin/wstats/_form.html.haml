@@ -54,6 +54,9 @@
         %br
         = f.check_box :four_stroke_engine
         = f.label     :four_stroke_engine, "4-х тактный", :style => "display:inline"
+        %br
+        = f.label "Судья"
+        = f.text_field :judge
       %br
     = f.submit submit, :class => "btn"
     = link_to "Назад", :back, :class => "btn"

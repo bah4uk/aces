@@ -15,5 +15,5 @@
       %td= pilot.country.name
       %td= "#{pilot.tournaments.map(&:name).join(', ')}"
       %td
-        =link_to "Edit", edit_admin_pilot_path(pilot), :class => "btn btn-small"
-        =link_to "Delete", admin_pilot_path(pilot),  :class => "btn btn-small btn-danger", :method => "delete", :data => { :confirm => "Are you sure?"}
+        =link_to "Изменить", edit_admin_pilot_path(pilot), :class => "btn btn-small"
+        =link_to "Удалить", admin_pilot_path(pilot),  :class => "btn btn-small btn-danger", :method => "delete", :data => { :confirm => "Are you sure?"}

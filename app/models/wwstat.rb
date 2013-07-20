@@ -3,8 +3,8 @@ class Wwstat < ActiveRecord::Base
   belongs_to :tour
   belongs_to :tournament
 
-  attr_accessible :pilot_id, :tour_id, :tournament_id, :seconds, :cuts,
-                  :uncut, :non_engagement, :crossed_line, :rpm_penalty
+  attr_accessible :pilot_id, :tour_id, :tournament_id, :seconds, :cuts, :uncut,
+                  :non_engagement, :crossed_line, :rpm_penalty, :judge
 
   def self.points_for(pilot_id, tour_id)
     s = pilot_tour(pilot_id, tour_id)
@@ -17,6 +17,10 @@ class Wwstat < ActiveRecord::Base
 
   def self.for_tournament(tournament_id)
     where(tournament_id: tournament_id)
+  end
+
+  def self.pts_for(pilot_id)
+    where(pilot_id: pilot_id).map{|stat| stat.main_pts}.inject(:+)
   end
 
   def main_pts

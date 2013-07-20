@@ -28,6 +28,9 @@
         %br
         = f.check_box :rpm_penalty
         = f.label     :rpm_penalty, "Превышение оборотов", :style => "display:inline"
+        %br
+        = f.label "Судья"
+        = f.text_field :judge
       %br
     = f.submit submit, :class => "btn"
     = link_to "Назад", :back, :class => "btn"

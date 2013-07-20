@@ -13,6 +13,10 @@ Aces::Application.routes.draw do
     get "/" => "tournaments#index"
   end
 
+  resources :tournaments do
+    get "/overall" => "tournaments#overall"
+  end
+
   match '/admin/tournaments/pick_pilots/:id' => 'admin/tournaments#pick_pilots', as: 'pick_pilots'
   match '/admin/tournaments/shuffle/:id' => 'admin/tournaments#shuffle', as: 'shuffle'
 

@@ -2,7 +2,7 @@
 
 %ul.nav
   %li
-    = link_to 'Главная', root_path
+    = link_to 'Главная', tournaments_path
   - if user_signed_in?
     %li
       = link_to 'Выйти', destroy_user_session_path, :method=>'delete'
